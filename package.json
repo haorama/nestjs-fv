@@ -1,0 +1,10 @@
+{
+  "name": "@haorama/nestjs-fv",
+  "version": "0.0.1",
+  "description": "Fastest validator for nestjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/haorama/nestjs-fv",
+  "author": "Michael Lazuardy",
+  "license": "MIT"
+}
