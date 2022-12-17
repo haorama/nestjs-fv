@@ -51,6 +51,9 @@ export class UserController {
 
 Notice that you'll received unhandled exceptions, next step is to create exception filter to sends an appropriate user-friendly response.
 
+Also noted that validation pipe by default add $$strict = "remove" if there is no `$$strict` prop defined in your class schema.
+you can overwrite or use your own validation pipe to modify the behavior.
+
 ```ts
 import { ValidationError } from "@haorama/nestjs-fv";
 import { ArgumentsHost, Catch, ExceptionFilter } from "@nestjs/common";
@@ -97,6 +100,89 @@ export class UserController {
 }
 ```
 
+### `@IsArray`
+This is an `array` validator.
+
+```ts
+import { IsArray } from "@haorama/nestjs-fv";
+
+export class CreateUserDTO {
+  @IsArray({ items: "string" })
+  roles: string[];
+
+  // OR
+  @IsArray({ items: { type: "string", enum: ["editor", "viewer"]} })
+  roles: string[];
+}
+```
+
+### `@IsBoolean`
+This is an `boolean` validator, by default value will be converted to `boolean` (1,0, on, off, "true", "false")
+
+```ts
+import { IsBoolean } from "@haorama/nestjs-fv";
+
+export class CreateUserDTO {
+  @IsBoolean()
+  subscribed: boolean;
+}
+```
+
+### `@IsDate`
+This is an `date` validator, by default value will be `convert` to `Date`
+
+```ts
+import { IsDate } from "@haorama/nestjs-fv";
+
+export class CreatePostDTO {
+  @IsDate()
+  created: Date;
+}
+```
+
+### `@IsEmail`
+This is an `email` validator
+
+```ts
+import { IsEmail } from "@haorama/nestjs-fv";
+
+export class CreateUserDTO {
+  @IsEmail()
+  email: string;
+}
+```
+
+### `@IsNumber`
+This is an `number` validator, by default value will be converted to number.
+
+```ts
+import { IsNumber } from "@haoarama/nestjs-fv";
+
+export class CreateUserDTO {
+  @IsNumber()
+  age: number;
+}
+```
+
+### `@IsObject`
+This is an `object` validator
+
+```ts
+import { IsObject } from "@haorama/nestjs-fv";
+
+export class CreateUserDTO {
+  @IsObject({
+    strict: "remove", //true, false, remove
+    props: {
+      street: "string", //string short-hand definition
+      city: { type: "string" },
+      zip: { type: "number" }
+    }
+  })
+  address: Record<string, any>; //or you can replace with class or interface ( because we dont support nested schema yet)
+}
+```
+
 ### `@IsString`
 This is an `string` validator. all `string` validation from fastest validator are available by passing object arguments.
 
@@ -107,6 +193,18 @@ import { IsString } from "@haorama/nestjs-fv";
 export class CreateUserDTO {
   @IsString({convert: false, empty: true})
   name: string;
+}
+```
+
+### `@IsUrl`
+This is an `url` validator
+
+```ts
+import { IsUrl } from "@haorama/nestjs-fv";
+
+export class CreateProfileDTO {
+  @IsUrl()
+  github_url: string;
 }
 ```
 
@@ -128,3 +226,8 @@ export class LoginDTO {
 ## Error / Validation Messages
 by default we overwrite some of the fastest-validator default messages. removing `'field'` inside `field` placeholder.
 you can check the overwrite messages here [https://github.com/haorama/nestjs-fv/blob/main/src/validator.ts](https://github.com/haorama/nestjs-fv/blob/main/src/validator.ts)
+
+
+## TODO
+- Add more decorators provided by fastest-validator
+- Support Nested Schema
