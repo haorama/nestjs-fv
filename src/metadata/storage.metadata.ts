@@ -1,15 +1,20 @@
 import { CheckerFunctionV2, RuleCustom } from "fastest-validator";
 import "reflect-metadata";
-import { TRule } from "../types/rule.type";
 
 export const SCHEMA_KEY = "schema";
 
-export function addRule<T extends RuleCustom = any>(
+export function addRule<T extends RuleCustom | string | "remove" | boolean>(
   target: any,
   propName: string,
-  options: TRule<T> | any,
+  options: T,
 ) {
   const schema = Reflect.getMetadata(SCHEMA_KEY, target) || {};
+
+  // $$root, $$strict or short-hand definition rule come here
+  if (typeof options === "string" || typeof options === "boolean") {
+    schema[propName] = options;
+    return Reflect.defineMetadata(SCHEMA_KEY, schema, target);
+  }
 
   if (options?.requiredIf?.length >= 2) {
     options.optional = true;
