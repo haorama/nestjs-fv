@@ -3,6 +3,12 @@ import FastestValidator from "fastest-validator";
 export const $validator = new FastestValidator({
   useNewCustomCheckerFunction: true,
   messages: {
+    arrayEmpty: "The {field} field cannot be empty.",
+    arrayEnum:
+      "The {field} field must be one of the following values: {expected}.",
+
+    equalField: "The {field} field does not match with {expected} field.",
+
     required: "The {field} field is required.",
 
     email: "The {field} field must be a valid email.",
