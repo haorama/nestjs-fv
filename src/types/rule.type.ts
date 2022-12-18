@@ -9,4 +9,5 @@ export type AdditionalRule = {
   requiredIf?: [string, any];
 };
 
+// TODO: use OMIT?
 export type TRule<T extends RuleCustom> = Partial<T> & AdditionalRule;

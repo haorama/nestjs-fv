@@ -4,6 +4,6 @@ import { addRule } from "../metadata/storage.metadata";
 
 export function IsString(options?: TRule<RuleString>): PropertyDecorator {
   return (target: any, propName: string) => {
-    addRule(target, propName, { type: "string", ...options });
+    addRule<RuleString>(target, propName, { type: "string", ...options });
   };
 }
