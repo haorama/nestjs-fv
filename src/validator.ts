@@ -27,19 +27,4 @@ export const $validator = new FastestValidator({
 
     url: "The {field} field must be a valid URL.",
   },
-  defaults: {
-    string: {
-      empty: false,
-      convert: true,
-    },
-    number: {
-      convert: true,
-    },
-    date: {
-      convert: true,
-    },
-    boolean: {
-      convert: true,
-    },
-  },
 });
