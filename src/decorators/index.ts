@@ -8,3 +8,4 @@ export * from "./array.decorator";
 export * from "./date.decorator";
 export * from "./object.decorator";
 export * from "./url.decorator";
+export * from "./equal.decorator";

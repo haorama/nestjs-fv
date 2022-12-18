@@ -152,6 +152,24 @@ export class CreateUserDTO {
 }
 ```
 
+### `@IsEqual`
+This is an `equal` validator.
+
+```ts
+import { IsString, IsEqual } from "@haorama/nestjs-fv";
+
+export class CreateUserDTO {
+  @IsString()
+  password: string;
+
+  @IsEqual("password")
+  confirm_password: string;
+
+  @IsEqual({ value: true, strict: true }) // this also worked
+  agreeTerms: boolean;
+}
+```
+
 ### `@IsNumber`
 This is an `number` validator, by default value will be converted to number.
 
@@ -184,9 +202,7 @@ export class CreateUserDTO {
 ```
 
 ### `@IsString`
-This is an `string` validator. all `string` validation from fastest validator are available by passing object arguments.
-
-Internally inside `ValidationPipe`, we already create `fastest-validator` instance that by default add `empty:false` and `convert:true` inside string rule, you can overwrite default options by adding string options to the `IsString` arguments
+This is an `string` validator.
 
 ```ts
 import { IsString } from "@haorama/nestjs-fv";

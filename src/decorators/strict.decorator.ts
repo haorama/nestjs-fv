@@ -7,6 +7,6 @@ type RuleStrict = boolean | "remove";
  */
 export function IsStrict(value: RuleStrict): PropertyDecorator {
   return (target: any, propName: string) => {
-    addRule(target, propName, value);
+    addRule<RuleStrict>(target, propName, value);
   };
 }
