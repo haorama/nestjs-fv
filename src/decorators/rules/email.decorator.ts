@@ -4,6 +4,6 @@ import { addRule } from "../../metadata/storage.metadata";
 
 export function IsEmail(options?: TRule<RuleEmail>): PropertyDecorator {
   return (target: any, propName: string) => {
-    addRule(target, propName, { type: "email", ...options });
+    addRule(target, propName, { type: "email", convert: true, ...options });
   };
 }
