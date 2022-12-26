@@ -11,3 +11,5 @@ export type AdditionalRule = {
 
 // TODO: use OMIT?
 export type TRule<T extends RuleCustom> = Partial<T> & AdditionalRule;
+
+export type TItemType = new (...args: any[]) => any;

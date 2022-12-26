@@ -1,4 +1,4 @@
-import { addRule } from "../metadata/storage.metadata";
+import { addRule } from "../../metadata/storage.metadata";
 
 type RuleStrict = boolean | "remove";
 
