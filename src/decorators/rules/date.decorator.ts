@@ -1,5 +1,5 @@
 import type { RuleDate } from "fastest-validator";
-import { addRule } from "../metadata/storage.metadata";
+import { addRule } from "../../metadata/storage.metadata";
 
 /**
  * Decorator for adding a date rule to a property

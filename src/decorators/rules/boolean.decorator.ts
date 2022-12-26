@@ -1,5 +1,5 @@
 import type { RuleBoolean } from "fastest-validator";
-import { addRule } from "../metadata/storage.metadata";
+import { addRule } from "../../metadata/storage.metadata";
 
 /**
  * Decorator for adding a boolean rule to a property

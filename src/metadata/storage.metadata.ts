@@ -1,7 +1,8 @@
 import { CheckerFunctionV2, RuleCustom } from "fastest-validator";
 import "reflect-metadata";
 
-export const SCHEMA_KEY = "schema";
+export const SCHEMA_KEY = "haorama_schema";
+export const SCHEMA_TYPE_KEY = "haorama_schema_type";
 
 export function addRule<T extends RuleCustom | string | "remove" | boolean>(
   target: any,
@@ -38,6 +39,29 @@ export function addRule<T extends RuleCustom | string | "remove" | boolean>(
     };
 
     options.custom = custom;
+  }
+
+  if (options.type === "array") {
+    const item = Reflect.getMetadata(SCHEMA_TYPE_KEY, target, propName);
+
+    if (!!item && typeof item.itemType === "function") {
+      const [type] = item.itemType();
+      const props = Reflect.getMetadata(SCHEMA_KEY, type.prototype);
+      options.items = {
+        ...item.options,
+        type: "object",
+        props,
+      };
+    }
+  }
+
+  if (options.type === "object") {
+    const t = Reflect.getMetadata("design:type", target, propName);
+    const props = Reflect.getMetadata(SCHEMA_KEY, t.prototype);
+
+    if (!!props) {
+      options.props = props;
+    }
   }
 
   schema[propName] = options;

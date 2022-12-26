@@ -1,5 +1,5 @@
 import type { ValidationRuleObject } from "fastest-validator";
-import { addRule } from "../metadata/storage.metadata";
+import { addRule } from "../../metadata/storage.metadata";
 
 /**
  * Decorator for adding a validation rule to a property

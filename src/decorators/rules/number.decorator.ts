@@ -1,6 +1,6 @@
 import type { RuleNumber } from "fastest-validator";
-import type { TRule } from "../types/rule.type";
-import { addRule } from "../metadata/storage.metadata";
+import type { TRule } from "../../types/rule.type";
+import { addRule } from "../../metadata/storage.metadata";
 
 /**
  * number validation
