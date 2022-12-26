@@ -7,6 +7,10 @@ import { addRule } from "../../metadata/storage.metadata";
  */
 export function IsDate(options?: Partial<RuleDate>): PropertyDecorator {
   return (target: any, propName: string) => {
-    addRule(target, propName, { type: "date", ...options });
+    addRule<RuleDate>(target, propName, {
+      type: "date",
+      convert: true,
+      ...options,
+    });
   };
 }

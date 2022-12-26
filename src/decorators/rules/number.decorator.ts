@@ -10,6 +10,7 @@ export function IsNumber(options?: TRule<RuleNumber>): PropertyDecorator {
   return (target: any, propName: string) => {
     addRule<RuleNumber>(target, propName, {
       type: "number",
+      convert: true,
       ...options,
     });
   };

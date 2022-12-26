@@ -8,6 +8,6 @@ import { addRule } from "../../metadata/storage.metadata";
  */
 export function IsBoolean(options?: Partial<RuleBoolean>): PropertyDecorator {
   return (target: any, propName: string) => {
-    addRule(target, propName, { type: "boolean", ...options });
+    addRule(target, propName, { type: "boolean", convert: true, ...options });
   };
 }
