@@ -1,4 +1,4 @@
-import { ValidationError as FastestValidationError } from "fastest-validator";
+import type { ValidationError as FastestValidationError } from "fastest-validator";
 
 export class ValidationError {
   public errors: FastestValidationError[];
