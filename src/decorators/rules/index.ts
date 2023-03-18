@@ -10,3 +10,4 @@ export * from "./object.decorator";
 export * from "./url.decorator";
 export * from "./equal.decorator";
 export * from "./array";
+export * from "./time.decorator";
