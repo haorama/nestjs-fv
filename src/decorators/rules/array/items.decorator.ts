@@ -1,6 +1,6 @@
 import type { RuleObject } from "fastest-validator";
-import { TItemType } from "src/types";
-import { SCHEMA_TYPE_KEY } from "../metadata/storage.metadata";
+import { SCHEMA_TYPE_KEY } from "src/constants";
+import type { TItemType } from "src/types";
 
 /**
  * Items decorator for array rule

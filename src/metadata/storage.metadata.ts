@@ -1,8 +1,6 @@
 import { CheckerFunctionV2, RuleCustom } from "fastest-validator";
 import "reflect-metadata";
-
-export const SCHEMA_KEY = "haorama_schema";
-export const SCHEMA_TYPE_KEY = "haorama_schema_type";
+import { SCHEMA_KEY, SCHEMA_TYPE_KEY } from "src/constants";
 
 export function addRule<T extends RuleCustom | string | "remove" | boolean>(
   target: any,
