@@ -1,13 +1,18 @@
-import { ArgumentMetadata, Injectable, PipeTransform } from "@nestjs/common";
+import type { ArgumentMetadata, PipeTransform } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { SCHEMA_KEY } from "./metadata/storage.metadata";
-import { WithValidator } from "./types/with-validator.interface";
+import type { WithValidator } from "./types/with-validator.interface";
 import { ValidationError } from "./validation.error";
 import { $validator } from "./validator";
 
 @Injectable()
 export class ValidationPipe implements PipeTransform, WithValidator {
   async transform(value: any, args: ArgumentMetadata) {
-    const schema = Reflect.getMetadata(SCHEMA_KEY, args.metatype.prototype);
+    if (args.type !== "body") {
+      return value;
+    }
+
+    const schema = Reflect.getMetadata(SCHEMA_KEY, args.metatype);
 
     if (!!schema) {
       if (schema.$$strict === undefined) {
