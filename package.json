@@ -1,7 +1,7 @@
 {
   "name": "@haorama/nestjs-fv",
   "author": "Michael Lazuardy",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Fastest validator for nestjs",
   "keywords": [
     "nestjs",

@@ -1,6 +1,6 @@
 import type { RuleObject } from "fastest-validator";
-import { SCHEMA_TYPE_KEY } from "src/constants";
-import type { TItemType } from "src/types";
+import { SCHEMA_TYPE_KEY } from "../../../constants";
+import type { TItemType } from "../../../types";
 
 /**
  * Items decorator for array rule

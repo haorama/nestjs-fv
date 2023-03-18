@@ -1,6 +1,6 @@
 import { CheckerFunctionV2, RuleCustom } from "fastest-validator";
 import "reflect-metadata";
-import { SCHEMA_KEY, SCHEMA_TYPE_KEY } from "src/constants";
+import { SCHEMA_KEY, SCHEMA_TYPE_KEY } from "../constants";
 
 export function addRule<T extends RuleCustom | string | "remove" | boolean>(
   target: any,
