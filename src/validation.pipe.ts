@@ -1,6 +1,6 @@
 import type { ArgumentMetadata, PipeTransform } from "@nestjs/common";
 import { Injectable } from "@nestjs/common";
-import { SCHEMA_KEY } from "./metadata/storage.metadata";
+import { SCHEMA_KEY } from "./constants";
 import type { WithValidator } from "./types/with-validator.interface";
 import { ValidationError } from "./validation.error";
 import { $validator } from "./validator";
