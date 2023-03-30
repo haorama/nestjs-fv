@@ -7,12 +7,12 @@ export function addRule<T extends RuleCustom | string | "remove" | boolean>(
   propName: string,
   options: T,
 ) {
-  const schema = Reflect.getMetadata(SCHEMA_KEY, target) || {};
+  const schema = Reflect.getMetadata(SCHEMA_KEY, target.constructor) || {};
 
   // $$root, $$strict or short-hand definition rule come here
   if (typeof options === "string" || typeof options === "boolean") {
     schema[propName] = options;
-    return Reflect.defineMetadata(SCHEMA_KEY, schema, target);
+    return Reflect.defineMetadata(SCHEMA_KEY, schema, target.constructor);
   }
 
   if (options?.requiredIf?.length >= 2) {
@@ -40,7 +40,7 @@ export function addRule<T extends RuleCustom | string | "remove" | boolean>(
   }
 
   if (options.type === "array") {
-    const item = Reflect.getMetadata(SCHEMA_TYPE_KEY, target, propName);
+    const item = Reflect.getMetadata(SCHEMA_TYPE_KEY, target.constructor, propName);
 
     if (!!item && typeof item.itemType === "function") {
       const [type] = item.itemType();
@@ -64,5 +64,5 @@ export function addRule<T extends RuleCustom | string | "remove" | boolean>(
 
   schema[propName] = options;
 
-  Reflect.defineMetadata(SCHEMA_KEY, schema, target);
+  Reflect.defineMetadata(SCHEMA_KEY, schema, target.constructor);
 }
